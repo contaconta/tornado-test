@@ -43,7 +43,7 @@ class Application(tornado.web.Application):
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         user = self.get_secure_cookie("user")
-        logging.debug('BaseHandler - user:'+user)
+        logging.debug('BaseHandler - user: %s' % user)
         if not user: return None
         return tornado.escape.utf8(user)
 
@@ -67,9 +67,19 @@ class AuthLoginHandler(BaseHandler):
             self.write_error(403)
 
 class AuthLogoutHandler(BaseHandler):
+
+    def initialize(self):
+        logging.debug('AuthLogoutHandler - initialize')
+
     def get(self):
         self.clear_cookie("user")
         self.redirect('/')
+
+    def prepare(self):
+        logging.debug('AuthLogoutHandler - prepare()')
+
+    def on_finish(self):
+        logging.debug('AuthLogoutHandler - on_finish()')
 
 class MainHandler(BaseHandler):
     @tornado.web.authenticated
