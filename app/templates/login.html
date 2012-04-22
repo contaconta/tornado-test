@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h1>Login</h1>
+
+    <form action="/login" method="POST">
+      <div>
+        ユーザ名:
+        <input type="text" name="user" value="" />
+      </div>
+      <div>
+        パスワード:
+        <input type="password" name="password" value="" />
+      </div>
+      <div>
+        <input type="submit" value="ログイン" />
+      </div>
+    </form>
+
+
+    <script type="text/javascript" src="{{ static_url('script.js') }}"></script>
+  </body>
+</html>
